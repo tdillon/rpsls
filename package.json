@@ -1,6 +1,6 @@
 {
   "name": "rpsls",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "The canonical rock-paper-scissors-lizard-spock library.",
   "main": "rpsls.js",
   "scripts": {
