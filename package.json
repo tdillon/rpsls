@@ -1,0 +1,27 @@
+{
+  "name": "rpsls",
+  "version": "0.0.0",
+  "description": "The canonical rock-paper-scissors-lizard-spock library.",
+  "main": "rpsls.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdillon/rpsls.git"
+  },
+  "keywords": [
+    "typescript",
+    "javascript",
+    "rock",
+    "paper",
+    "scissors",
+    "lizard",
+    "spock"
+  ],
+  "author": "Travis Dillon",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/tdillon/rpsls/issues"
+  },
+  "homepage": "https://github.com/tdillon/rpsls#readme"
+}
