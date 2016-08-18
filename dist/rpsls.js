@@ -24,27 +24,27 @@ System.register([], function(exports_1, context_1) {
                     configurable: true
                 });
                 Object.defineProperty(RockPaperScissorsLizardSpock, "ROCK", {
-                    get: function () { return -1; },
+                    get: function () { return 0; },
                     enumerable: true,
                     configurable: true
                 });
                 Object.defineProperty(RockPaperScissorsLizardSpock, "PAPER", {
-                    get: function () { return -1; },
+                    get: function () { return 1; },
                     enumerable: true,
                     configurable: true
                 });
                 Object.defineProperty(RockPaperScissorsLizardSpock, "SCISSORS", {
-                    get: function () { return -1; },
+                    get: function () { return 2; },
                     enumerable: true,
                     configurable: true
                 });
                 Object.defineProperty(RockPaperScissorsLizardSpock, "LIZARD", {
-                    get: function () { return -1; },
+                    get: function () { return 3; },
                     enumerable: true,
                     configurable: true
                 });
                 Object.defineProperty(RockPaperScissorsLizardSpock, "SPOCK", {
-                    get: function () { return -1; },
+                    get: function () { return 4; },
                     enumerable: true,
                     configurable: true
                 });
