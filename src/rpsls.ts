@@ -1,8 +1,8 @@
 export class RockPaperScissorsLizardSpock {
 
-  static get TIE() { return -1; }
-  static get PLAYER1() { return -1; }
-  static get PLAYER2() { return -1; }
+  static get TIE() { return 0; }
+  static get PLAYER1() { return 1; }
+  static get PLAYER2() { return 2; }
 
   static get ROCK() { return -1; }
   static get PAPER() { return -1; }

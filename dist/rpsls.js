@@ -9,17 +9,17 @@ System.register([], function(exports_1, context_1) {
                 function RockPaperScissorsLizardSpock() {
                 }
                 Object.defineProperty(RockPaperScissorsLizardSpock, "TIE", {
-                    get: function () { return -1; },
+                    get: function () { return 0; },
                     enumerable: true,
                     configurable: true
                 });
                 Object.defineProperty(RockPaperScissorsLizardSpock, "PLAYER1", {
-                    get: function () { return -1; },
+                    get: function () { return 1; },
                     enumerable: true,
                     configurable: true
                 });
                 Object.defineProperty(RockPaperScissorsLizardSpock, "PLAYER2", {
-                    get: function () { return -1; },
+                    get: function () { return 2; },
                     enumerable: true,
                     configurable: true
                 });
