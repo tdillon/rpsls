@@ -1,3 +1,4 @@
+//Use a WeakMap until class static fields are available.  ES 2017?
 const privateData = new WeakMap<Function, { moves: Array<string> }>();
 
 export class RockPaperScissorsLizardSpock {
@@ -41,8 +42,6 @@ export class RockPaperScissorsLizardSpock {
     if (p1 < 0 || p1 > 4 || p2 < 0 || p2 > 4) {
       throw new RangeError(`Moves must be 0, 1, 2, 3, or 4.  (${p1}, ${p2})`);
     }
-
-
 
     if (p1 === p2) {  //TIE
       return { outcome: RockPaperScissorsLizardSpock.TIE, result: `${RockPaperScissorsLizardSpock.getMoveName(p1)} vs ${RockPaperScissorsLizardSpock.getMoveName(p2)} is a tie` };

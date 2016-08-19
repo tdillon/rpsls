@@ -1,13 +1,13 @@
 {
   "name": "rpsls",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "The canonical rock-paper-scissors-lizard-spock library.",
   "main": "rpsls.js",
   "scripts": {
     "karma": "node_modules/.bin/karma",
     "typings": "node_modules/.bin/typings",
     "postinstall": "typings install",
-    "compile":"node_modules/.bin/tsc -p ./",
+    "compile": "node_modules/.bin/tsc -p ./",
     "test": "karma start karma.conf.js --single-run"
   },
   "repository": {
@@ -34,6 +34,7 @@
     "karma": "^1.2.0",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
+    "karma-spec-reporter": "0.0.26",
     "karma-systemjs": "^0.14.0",
     "systemjs": "^0.19.36",
     "typescript": "^1.8.10",
