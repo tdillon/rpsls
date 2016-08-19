@@ -49,7 +49,7 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
       });
       describe('tie GAMEPLAY results', () => {
         it('rock vs rock', () => expect(R.play(R.ROCK, R.ROCK).result).toBe('rock vs rock is a tie'));
-        it('paper vs paper', () => expect(R.play(R.PAPER, R.PAPER).result).toBe('paper vs paper is paper a tie'));
+        it('paper vs paper', () => expect(R.play(R.PAPER, R.PAPER).result).toBe('paper vs paper is a tie'));
         it('scissors vs scissors', () => expect(R.play(R.SCISSORS, R.SCISSORS).result).toBe('scissors vs scissors is a tie'));
         it('lizard vs lizard', () => expect(R.play(R.LIZARD, R.LIZARD).result).toBe('lizard vs lizard is a tie'));
         it('spock vs spock', () => expect(R.play(R.SPOCK, R.SPOCK).result).toBe('spock vs spock is a tie'));
