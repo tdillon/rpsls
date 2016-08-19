@@ -42,12 +42,14 @@ export class RockPaperScissorsLizardSpock {
       throw new RangeError(`Moves must be 0, 1, 2, 3, or 4.  (${p1}, ${p2})`);
     }
 
+
+
     if (p1 === p2) {  //TIE
-      return { outcome: RockPaperScissorsLizardSpock.TIE, result: 'TODO vs TODO is a tie' };
+      return { outcome: RockPaperScissorsLizardSpock.TIE, result: `${RockPaperScissorsLizardSpock.getMoveName(p1)} vs ${RockPaperScissorsLizardSpock.getMoveName(p2)} is a tie` };
     } else if (rules[p1][p2]) {  //PLAYER 1
-      return { outcome: RockPaperScissorsLizardSpock.PLAYER1, result: `TODO ${rules[p1][p2]} TODO` };
+      return { outcome: RockPaperScissorsLizardSpock.PLAYER1, result: `${RockPaperScissorsLizardSpock.getMoveName(p1)} ${rules[p1][p2]} ${RockPaperScissorsLizardSpock.getMoveName(p2)}` };
     } else {  //PLAYER 2
-      return { outcome: RockPaperScissorsLizardSpock.PLAYER2, result: `TODO ${rules[p2][p1]} TODO` };
+      return { outcome: RockPaperScissorsLizardSpock.PLAYER2, result: `${RockPaperScissorsLizardSpock.getMoveName(p2)} ${rules[p2][p1]} ${RockPaperScissorsLizardSpock.getMoveName(p1)}` };
     }
   }
 }
