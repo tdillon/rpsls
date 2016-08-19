@@ -18,6 +18,12 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
     it('SPOCK is 4', () => expect(R.SPOCK).toBe(4));
   });
 
+  describe('Move names', () => {
+    [{ id: R.ROCK, name: 'rock' }].forEach(m => {
+      it(`move ${m.id} is ${m.name}`, () => expect(R.getMoveName(m.id)).toBe(m.name));
+    });
+  });
+
   describe('All GAMEPLAY testing', () => {
 
     describe('unexepected GAMEPLAY', () => {
@@ -57,9 +63,9 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
       { winner: R.SPOCK, loser: R.SCISSORS, result: 'spock smashes scissors' },
     ].forEach(test => {
       describe(`${test.winner} vs ${test.loser} GAMEPLAY`, () => {
-        [[test.winner, test.loser], [test.loser, test.winner]].forEach(g => {
+        [[test.winner, test.loser, R.PLAYER1], [test.loser, test.winner, R.PLAYER2]].forEach(g => {
           let g1 = R.play(g[0], g[1]);
-          it(`${g[0]} vs ${g[1]} outcome`, () => expect(g1.outcome).toBe(test.winner));
+          it(`${g[0]} vs ${g[1]} outcome`, () => expect(g1.outcome).toBe(g[2]));
           it(`${g[0]} vs ${g[1]} result`, () => expect(g1.result).toBe(test.result));
         });
       });
