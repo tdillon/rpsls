@@ -11,6 +11,13 @@ export class RockPaperScissorsLizardSpock {
   static get SPOCK() { return 4; }
 
   /**
+   * TODO
+   */
+  static getMoveName(move: number): string {
+    return null;
+  }
+
+  /**
    * TODO DESCRIBE THE class
    * @parm p1 number TODO player 1 move
    * @parm p2 number TODO player 2 move
