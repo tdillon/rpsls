@@ -1,3 +1,5 @@
+const privateData = new WeakMap<Function, { moves: Array<string> }>();
+
 export class RockPaperScissorsLizardSpock {
 
   static get TIE() { return 0; }
@@ -14,7 +16,8 @@ export class RockPaperScissorsLizardSpock {
    * TODO
    */
   static getMoveName(move: number): string {
-    return null;
+    //TODO test for valid move, if not throw error
+    return privateData.get(RockPaperScissorsLizardSpock).moves[move];
   }
 
   /**
@@ -48,3 +51,7 @@ export class RockPaperScissorsLizardSpock {
     }
   }
 }
+
+privateData.set(RockPaperScissorsLizardSpock, {
+  moves: ['rock', 'paper', 'scissors', 'lizard', 'spock']
+});
