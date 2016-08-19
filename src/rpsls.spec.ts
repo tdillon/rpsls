@@ -19,7 +19,13 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
   });
 
   describe('Move names', () => {
-    [{ id: R.ROCK, name: 'rock' }].forEach(m => {
+    [
+      { id: R.ROCK, name: 'rock' },
+      { id: R.PAPER, name: 'paper' },
+      { id: R.SCISSORS, name: 'scissors' },
+      { id: R.LIZARD, name: 'lizard' },
+      { id: R.SPOCK, name: 'spock' }
+    ].forEach(m => {
       it(`move ${m.id} is ${m.name}`, () => expect(R.getMoveName(m.id)).toBe(m.name));
     });
   });
@@ -51,22 +57,22 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
     });
 
     [
-      { winner: R.ROCK, loser: R.SCISSORS, result: 'rock crushes scissors' },
-      { winner: R.ROCK, loser: R.LIZARD, result: 'rock crushes lizard' },
-      { winner: R.PAPER, loser: R.ROCK, result: 'paper covers rock' },
-      { winner: R.PAPER, loser: R.SPOCK, result: 'paper disproves spock' },
-      { winner: R.SCISSORS, loser: R.PAPER, result: 'scissors cuts paper' },
-      { winner: R.SCISSORS, loser: R.LIZARD, result: 'scissors decapitates lizard' },
-      { winner: R.LIZARD, loser: R.PAPER, result: 'lizard eats paper' },
-      { winner: R.LIZARD, loser: R.SPOCK, result: 'lizard poisons spock' },
-      { winner: R.SPOCK, loser: R.ROCK, result: 'spock vaporizes rock' },
-      { winner: R.SPOCK, loser: R.SCISSORS, result: 'spock smashes scissors' },
+      { winner: R.ROCK, loser: R.SCISSORS, result: `${R.getMoveName(R.ROCK)} crushes ${R.getMoveName(R.SCISSORS)}` },
+      { winner: R.ROCK, loser: R.LIZARD, result: `${R.getMoveName(R.ROCK)} crushes ${R.getMoveName(R.LIZARD)}` },
+      { winner: R.PAPER, loser: R.ROCK, result: `${R.getMoveName(R.PAPER)} covers ${R.getMoveName(R.ROCK)}` },
+      { winner: R.PAPER, loser: R.SPOCK, result: `${R.getMoveName(R.PAPER)} disproves ${R.getMoveName(R.SPOCK)}` },
+      { winner: R.SCISSORS, loser: R.PAPER, result: `${R.getMoveName(R.SCISSORS)} cuts ${R.getMoveName(R.PAPER)}` },
+      { winner: R.SCISSORS, loser: R.LIZARD, result: `${R.getMoveName(R.SCISSORS)} decapitates ${R.getMoveName(R.LIZARD)}` },
+      { winner: R.LIZARD, loser: R.PAPER, result: `${R.getMoveName(R.LIZARD)} eats ${R.getMoveName(R.PAPER)}` },
+      { winner: R.LIZARD, loser: R.SPOCK, result: `${R.getMoveName(R.LIZARD)} poisons ${R.getMoveName(R.SPOCK)}` },
+      { winner: R.SPOCK, loser: R.ROCK, result: `${R.getMoveName(R.SPOCK)} vaporizes ${R.getMoveName(R.ROCK)}` },
+      { winner: R.SPOCK, loser: R.SCISSORS, result: `${R.getMoveName(R.SPOCK)} smashes ${R.getMoveName(R.SCISSORS)}` },
     ].forEach(test => {
-      describe(`${test.winner} vs ${test.loser} GAMEPLAY`, () => {
-        [[test.winner, test.loser, R.PLAYER1], [test.loser, test.winner, R.PLAYER2]].forEach(g => {
+      [[test.winner, test.loser, R.PLAYER1], [test.loser, test.winner, R.PLAYER2]].forEach(g => {
+        describe(`${R.getMoveName(g[0])} vs ${R.getMoveName(g[1])} GAMEPLAY`, () => {
           let g1 = R.play(g[0], g[1]);
-          it(`${g[0]} vs ${g[1]} outcome`, () => expect(g1.outcome).toBe(g[2]));
-          it(`${g[0]} vs ${g[1]} result`, () => expect(g1.result).toBe(test.result));
+          it(`${R.getMoveName(g[0])} vs ${R.getMoveName(g[1])} outcome`, () => expect(g1.outcome).toBe(g[2]));
+          it(`${R.getMoveName(g[0])} vs ${R.getMoveName(g[1])} result`, () => expect(g1.result).toBe(test.result));
         });
       });
     });
