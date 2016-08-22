@@ -8,7 +8,7 @@ before_script:
 - npm run compile
 script:
 - npm test
-- npm test:coveralls
+- npm run test:coveralls
 deploy:
   provider: npm
   email: tdillon25@gmail.com
