@@ -33,11 +33,29 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
   });
 
 
-  describe('Move names exceptions', () => {
-    [{ name: 'null', value: null }].forEach(m => {
+  describe('Move names TypeError', () => {
+    [
+      { name: 'null', value: null },
+      { name: 'object', value: {} },
+      { name: 'undefined', value: undefined },
+      { name: 'array', value: [] },
+    ].forEach((m: { name: string, value: any }) => {
       it(`${m.name} will throw an exception`, () => expect(() => R.getMoveName(m.value)).toThrowError(TypeError));
     });
   });
+
+  describe('Move names RangeError', () => {
+    [
+      { name: '-1', value: -1 },
+      { name: '5', value: 5 },
+      { name: '0.1', value: .1 },
+      { name: '3.9', value: 3.9 }
+    ].forEach((m: { name: string, value: any }) => {
+      it(`${m.name} will throw an exception`, () => expect(() => R.getMoveName(m.value)).toThrowError(RangeError));
+    });
+  });
+
+  //TODO TEST FOR STRINGS
 
 
   describe('Gameplay testing', () => {
