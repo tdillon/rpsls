@@ -52,7 +52,7 @@ export class RockPaperScissorsLizardSpock {
   private static _cleanMove(num: number) {
     if (typeof num !== 'number') {
       throw new TypeError(`Move must be an integer between 0 and 4.  Got ${num}`);
-    } else if (num < 0 || num > 4) {
+    } else if ((num < 0) || (num > 4) || (num % 1 !== 0)) {
       throw new RangeError(`Move must be an integer between 0 and 4.  Got ${num}`);
     }
 
