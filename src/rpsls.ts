@@ -1,5 +1,5 @@
 //Use a WeakMap until class static fields are available.  ES 2017?
-const privateData = new WeakMap<Function, { moves: Array<string> }>();
+const privateData = new WeakMap<Function, { moves: Array<string>, rules: Array<Array<string>> }>();
 
 export class RockPaperScissorsLizardSpock {
 
@@ -29,17 +29,10 @@ export class RockPaperScissorsLizardSpock {
    * @return foo bar
    */
   static play(p1: number, p2: number): { outcome: number, result: string } {
-    //TODO make this a weakmap so it is not created all the time
-    let rules: Array<Array<string>> = [
-      [, , 'crushes', 'crushes',],
-      ['covers', , , , 'disproves'],
-      [, 'cuts', , 'decapitates',],
-      [, 'eats', , , 'poisons'],
-      ['vaporizes', , 'smashes', ,]
-    ];
-
     p1 = RockPaperScissorsLizardSpock._cleanInput(p1);
     p2 = RockPaperScissorsLizardSpock._cleanInput(p2);
+
+    let rules = privateData.get(RockPaperScissorsLizardSpock).rules;
 
     if (p1 === p2) {  //TIE
       return { outcome: RockPaperScissorsLizardSpock.TIE, result: `${RockPaperScissorsLizardSpock.getMoveName(p1)} vs ${RockPaperScissorsLizardSpock.getMoveName(p2)} is a tie` };
@@ -62,5 +55,12 @@ export class RockPaperScissorsLizardSpock {
 }
 
 privateData.set(RockPaperScissorsLizardSpock, {
-  moves: ['rock', 'paper', 'scissors', 'lizard', 'spock']
+  moves: ['rock', 'paper', 'scissors', 'lizard', 'spock'],
+  rules: [
+    [, , 'crushes', 'crushes',],
+    ['covers', , , , 'disproves'],
+    [, 'cuts', , 'decapitates',],
+    [, 'eats', , , 'poisons'],
+    ['vaporizes', , 'smashes', ,]
+  ]
 });
