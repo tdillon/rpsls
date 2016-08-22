@@ -17,7 +17,7 @@ export class RockPaperScissorsLizardSpock {
    * TODO
    */
   static getMoveName(move: number): string {
-    //TODO test for valid move, if not throw error
+    move = RockPaperScissorsLizardSpock._cleanInput(move, 0, 2);
     return privateData.get(RockPaperScissorsLizardSpock).moves[move];
   }
 
@@ -38,10 +38,8 @@ export class RockPaperScissorsLizardSpock {
       ['vaporizes', , 'smashes', ,]
     ];
 
-    //TODO handle for non-numerics too
-    if (p1 < 0 || p1 > 4 || p2 < 0 || p2 > 4) {
-      throw new RangeError(`Moves must be 0, 1, 2, 3, or 4.  (${p1}, ${p2})`);
-    }
+    p1 = RockPaperScissorsLizardSpock._cleanInput(p1, 0, 4);
+    p2 = RockPaperScissorsLizardSpock._cleanInput(p2, 0, 4);
 
     if (p1 === p2) {  //TIE
       return { outcome: RockPaperScissorsLizardSpock.TIE, result: `${RockPaperScissorsLizardSpock.getMoveName(p1)} vs ${RockPaperScissorsLizardSpock.getMoveName(p2)} is a tie` };
@@ -51,6 +49,16 @@ export class RockPaperScissorsLizardSpock {
       return { outcome: RockPaperScissorsLizardSpock.PLAYER2, result: `${RockPaperScissorsLizardSpock.getMoveName(p2)} ${rules[p2][p1]} ${RockPaperScissorsLizardSpock.getMoveName(p1)}` };
     }
   }
+
+
+  private static _cleanInput(num: number, from: number, to: number) {
+    //TODO handle for non-numerics too
+    if (num < from || num > to) {
+      throw new RangeError(`Expected input between ${from} and ${to}.  Got ${num}`);
+    }
+    return num;
+  }
+
 }
 
 privateData.set(RockPaperScissorsLizardSpock, {
