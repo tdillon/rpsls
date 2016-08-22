@@ -1,0 +1,11 @@
+coverage
+dist/*.spec.*
+src/*.spec.*
+typings
+.gitignore
+.npmignore
+.travis.yml
+karma.conf.js
+system.conf.js
+tsconfig.json
+typings.json

@@ -1,14 +1,18 @@
 {
   "name": "rpsls",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The canonical rock-paper-scissors-lizard-spock library.",
-  "main": "rpsls.js",
+  "main": "dist/rpsls.js",
   "scripts": {
     "karma": "node_modules/.bin/karma",
     "typings": "node_modules/.bin/typings",
     "postinstall": "typings install",
+    "clean": "rm -rf dist/ coverage/",
     "compile": "node_modules/.bin/tsc -p ./",
-    "test": "karma start karma.conf.js --single-run"
+    "build": "npm run clean && npm run compile",
+    "test": "karma start karma.conf.js --single-run",
+    "posttest": "node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -o coverage -t html",
+    "test:coveralls": "node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -t text-lcov | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",
@@ -30,12 +34,16 @@
   },
   "homepage": "https://github.com/tdillon/rpsls#readme",
   "devDependencies": {
+    "coveralls": "^2.11.12",
+    "istanbul": "^0.4.4",
     "jasmine-core": "^2.4.1",
     "karma": "^1.2.0",
+    "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
     "karma-spec-reporter": "0.0.26",
     "karma-systemjs": "^0.14.0",
+    "remap-istanbul": "^0.6.4",
     "systemjs": "^0.19.36",
     "typescript": "^1.8.10",
     "typings": "^1.3.2"

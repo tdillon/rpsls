@@ -6,6 +6,9 @@ before_install:
     - sh -e /etc/init.d/xvfb start
 before_script:
 - npm run compile
+script:
+- npm test
+- npm test:coveralls
 deploy:
   provider: npm
   email: tdillon25@gmail.com
