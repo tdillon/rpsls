@@ -1,8 +1,9 @@
 {
   "name": "rpsls",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "The canonical rock-paper-scissors-lizard-spock library.",
   "main": "dist/rpsls.js",
+  "typings": "dist/rpsls.d.ts",
   "scripts": {
     "karma": "node_modules/.bin/karma",
     "typings": "node_modules/.bin/typings install",
