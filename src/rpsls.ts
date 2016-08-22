@@ -17,7 +17,7 @@ export class RockPaperScissorsLizardSpock {
    * TODO
    */
   static getMoveName(move: number): string {
-    move = RockPaperScissorsLizardSpock._cleanInput(move);
+    move = RockPaperScissorsLizardSpock._cleanMove(move);
     return privateData.get(RockPaperScissorsLizardSpock).moves[move];
   }
 
@@ -29,8 +29,8 @@ export class RockPaperScissorsLizardSpock {
    * @return foo bar
    */
   static play(p1: number, p2: number): { outcome: number, result: string } {
-    p1 = RockPaperScissorsLizardSpock._cleanInput(p1);
-    p2 = RockPaperScissorsLizardSpock._cleanInput(p2);
+    p1 = RockPaperScissorsLizardSpock._cleanMove(p1);
+    p2 = RockPaperScissorsLizardSpock._cleanMove(p2);
 
     let rules = privateData.get(RockPaperScissorsLizardSpock).rules;
 
@@ -44,11 +44,18 @@ export class RockPaperScissorsLizardSpock {
   }
 
 
-  private static _cleanInput(num: number) {
-    //TODO handle for non-numerics too
-    if (num < 0 || num > 4) {
-      throw new RangeError(`Moves must be between 0 and 4.  Got ${num}`);
+  /**
+   * TODO
+   *
+   * @private
+   */
+  private static _cleanMove(num: number) {
+    if (typeof num !== 'number') {
+      throw new TypeError(`Move must be an integer between 0 and 4.  Got ${num}`);
+    } else if (num < 0 || num > 4) {
+      throw new RangeError(`Move must be an integer between 0 and 4.  Got ${num}`);
     }
+
     return num;
   }
 
