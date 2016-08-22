@@ -32,9 +32,19 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
     });
   });
 
+
+  describe('Move names exceptions', () => {
+    [{ name: 'null', value: null }].forEach(m => {
+      it(`${m.name} will throw an exception`, () => expect(() => R.getMoveName(m.value)).toThrowError(TypeError));
+    });
+  });
+
+
   describe('Gameplay testing', () => {
 
     describe('unexepected GAMEPLAY', () => {
+
+
       //TODO R.play(-1,5,null, undefined, '', {}, [], etc.)
       //TOOD R.getResult
       //ODOD R.getOutcome
