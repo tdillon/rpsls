@@ -1,26 +1,39 @@
 # rpsls
+
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![npm][npm-image]][npm-url]
+
 The canonical rock-paper-scissors-lizard-spock library.
 
+## Library Usage
+
+TODO
 
 ## Dev Process
 
-Install packages.
+TODO
 
-```shell
+To contribute to this project: ...
+
 npm i
-```
 
-Make code changes.
+npm run typings
 
-Compile library and tests.
+//Dev
 
-```shell
-npm run compile
-```
-Run tests.
+npm run build
 
-```shell
-npm run test
-```
+npm test
 
-Commit changes.
+//commit
+
+
+[travis-image]: https://travis-ci.org/tdillon/rpsls.svg?branch=master
+[travis-url]: https://travis-ci.org/tdillon/rpsls
+
+[coveralls-image]: https://coveralls.io/repos/tdillon/rpsls/badge.svg?branch=master&service=github
+[coveralls-url]: https://coveralls.io/github/tdillon/rpsls?branch=master
+
+[npm-image]: https://img.shields.io/npm/v/rpsls.svg
+[npm-url]: https://www.npmjs.com/package/rpsls

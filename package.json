@@ -1,12 +1,11 @@
 {
   "name": "rpsls",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The canonical rock-paper-scissors-lizard-spock library.",
   "main": "dist/rpsls.js",
   "scripts": {
     "karma": "node_modules/.bin/karma",
-    "typings": "node_modules/.bin/typings",
-    "postinstall": "typings install",
+    "typings": "node_modules/.bin/typings install",
     "clean": "rm -rf dist/ coverage/",
     "compile": "node_modules/.bin/tsc -p ./",
     "build": "npm run clean && npm run compile",
