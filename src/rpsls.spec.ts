@@ -1,11 +1,27 @@
 import {RockPaperScissorsLizardSpock as R} from './rpsls'
 
-let moves = [
-  { id: R.ROCK, name: 'rock' },
-  { id: R.PAPER, name: 'paper' },
-  { id: R.SCISSORS, name: 'scissors' },
-  { id: R.LIZARD, name: 'lizard' },
-  { id: R.SPOCK, name: 'spock' }
+let moves: Array<{ name: string, value: any, error?: ErrorConstructor }> = [
+  { name: 'rock', value: R.ROCK },
+  { name: 'paper', value: R.PAPER },
+  { name: 'scissors', value: R.SCISSORS },
+  { name: 'lizard', value: R.LIZARD },
+  { name: 'spock', value: R.SPOCK },
+  { name: 'null', value: null, error: TypeError },
+  { name: '{}', value: {}, error: TypeError },
+  { name: '{ move: 0 }', value: { move: 0 }, error: TypeError },
+  { name: 'undefined', value: undefined, error: TypeError },
+  { name: '[]', value: [], error: TypeError },
+  { name: '[1]', value: [1], error: TypeError },
+  { name: '() => 1', value: () => 1, error: TypeError },
+  { name: '""', value: '', error: TypeError },
+  { name: '" "', value: ' ', error: TypeError },
+  { name: '"0"', value: '0', error: TypeError },
+  { name: '"1.0"', value: '1.0', error: TypeError },
+  { name: '" 2 "', value: ' 2 ', error: TypeError },
+  { name: '-1', value: -1, error: RangeError },
+  { name: '5', value: 5, error: RangeError },
+  { name: '0.1', value: .1, error: RangeError },
+  { name: '3.9', value: 3.9, error: RangeError }
 ];
 
 describe('Rock Paper Scissors Lizard Spock library tests', () => {
@@ -26,78 +42,75 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
     it('SPOCK is 4', () => expect(R.SPOCK).toBe(4));
   });
 
-  describe('Move names', () => {
-    moves.forEach(m => {
-      it(`move ${m.id} is ${m.name}`, () => expect(R.getMoveName(m.id)).toBe(m.name));
+  describe('getMoveName tests', () => {
+    describe('Valid using move constants', () => {
+      moves.filter(m => !('error' in m)).forEach(m => {
+        it(`getMoveName(${m.value}) is ${m.name}`, () => expect(R.getMoveName(m.value)).toBe(m.name));
+      });
+    });
+
+    describe('Invalid move names', () => {
+      moves.filter(m => 'error' in m).forEach(m => {
+        it(`getMoveName(${m.name}) throws a ${m.error.name}`, () => expect(() => R.getMoveName(m.value)).toThrowError(m.error));
+      });
     });
   });
-
-
-  describe('Move names TypeError', () => {
-    [
-      { name: 'null', value: null },
-      { name: 'object', value: {} },
-      { name: 'undefined', value: undefined },
-      { name: 'array', value: [] },
-    ].forEach((m: { name: string, value: any }) => {
-      it(`${m.name} will throw an exception`, () => expect(() => R.getMoveName(m.value)).toThrowError(TypeError));
-    });
-  });
-
-  describe('Move names RangeError', () => {
-    [
-      { name: '-1', value: -1 },
-      { name: '5', value: 5 },
-      { name: '0.1', value: .1 },
-      { name: '3.9', value: 3.9 }
-    ].forEach((m: { name: string, value: any }) => {
-      it(`${m.name} will throw an exception`, () => expect(() => R.getMoveName(m.value)).toThrowError(RangeError));
-    });
-  });
-
-  //TODO TEST FOR STRINGS
-
 
   describe('Gameplay testing', () => {
 
-    describe('unexepected GAMEPLAY', () => {
+    describe('Valid gameplay', () => {
 
+      describe('Ties', () => {
+        moves.filter(m => !('error' in m)).forEach(m => {
+          describe(`${R.getMoveName(m.value)} vs ${R.getMoveName(m.value)}`, () => {
+            let round = R.play(m.value, m.value);
+            it(`outcome is TIE`, () => expect(round.outcome).toBe(R.TIE));
+            it(`result is a tie`, () => expect(round.result).toBe(`${R.getMoveName(m.value)} vs ${R.getMoveName(m.value)} is a tie`));
+          });
+        });
+      });
 
-      //TODO R.play(-1,5,null, undefined, '', {}, [], etc.)
-      //TOOD R.getResult
-      //ODOD R.getOutcome
-      //TODO R.play(p1,p2) : {outcome:TIE,PLAYER1,PLAYER2, result:string(e.g., rock smashes scissors)}
-    });
-
-    describe('Tie gameplay', () => {
-      moves.forEach(m => {
-        describe(`${R.getMoveName(m.id)} vs ${R.getMoveName(m.id)}`, () => {
-          let round = R.play(m.id, m.id);
-          it(`outcome is TIE`, () => expect(round.outcome).toBe(R.TIE));
-          it(`result is a tie`, () => expect(round.result).toBe(`${R.getMoveName(m.id)} vs ${R.getMoveName(m.id)} is a tie`));
+      describe('Non-ties', () => {
+        [
+          { winner: R.ROCK, loser: R.SCISSORS, method: 'crushes' },
+          { winner: R.ROCK, loser: R.LIZARD, method: 'crushes' },
+          { winner: R.PAPER, loser: R.ROCK, method: 'covers' },
+          { winner: R.PAPER, loser: R.SPOCK, method: 'disproves' },
+          { winner: R.SCISSORS, loser: R.PAPER, method: 'cuts' },
+          { winner: R.SCISSORS, loser: R.LIZARD, method: 'decapitates' },
+          { winner: R.LIZARD, loser: R.PAPER, method: 'eats' },
+          { winner: R.LIZARD, loser: R.SPOCK, method: 'poisons' },
+          { winner: R.SPOCK, loser: R.ROCK, method: 'vaporizes' },
+          { winner: R.SPOCK, loser: R.SCISSORS, method: 'smashes' },
+        ].forEach(test => {
+          let result = `${R.getMoveName(test.winner)} ${test.method} ${R.getMoveName(test.loser)}`;  //e.g., 'rock crushes scissors'
+          [[test.winner, test.loser, R.PLAYER1], [test.loser, test.winner, R.PLAYER2]].forEach(g => {
+            describe(`${R.getMoveName(g[0])} vs ${R.getMoveName(g[1])}`, () => {
+              let round = R.play(g[0], g[1]);
+              it(`winner: ${R.getMoveName(test.winner)} loser: ${R.getMoveName(test.loser)}`, () => expect(round.outcome).toBe(g[2]));
+              it(result, () => expect(round.result).toBe(result));
+            });
+          });
         });
       });
     });
 
-    describe('Non-tie gameplay', () => {
-      [
-        { winner: R.ROCK, loser: R.SCISSORS, method: 'crushes' },
-        { winner: R.ROCK, loser: R.LIZARD, method: 'crushes' },
-        { winner: R.PAPER, loser: R.ROCK, method: 'covers' },
-        { winner: R.PAPER, loser: R.SPOCK, method: 'disproves' },
-        { winner: R.SCISSORS, loser: R.PAPER, method: 'cuts' },
-        { winner: R.SCISSORS, loser: R.LIZARD, method: 'decapitates' },
-        { winner: R.LIZARD, loser: R.PAPER, method: 'eats' },
-        { winner: R.LIZARD, loser: R.SPOCK, method: 'poisons' },
-        { winner: R.SPOCK, loser: R.ROCK, method: 'vaporizes' },
-        { winner: R.SPOCK, loser: R.SCISSORS, method: 'smashes' },
-      ].forEach(test => {
-        let result = `${R.getMoveName(test.winner)} ${test.method} ${R.getMoveName(test.loser)}`;  //e.g., 'rock crushes scissors'
-        [[test.winner, test.loser, R.PLAYER1], [test.loser, test.winner, R.PLAYER2]].forEach(g => {
-          describe(`${R.getMoveName(g[0])} vs ${R.getMoveName(g[1])}`, () => {
-            let round = R.play(g[0], g[1]);
-            it(`winner: ${R.getMoveName(test.winner)} loser: ${R.getMoveName(test.loser)}`, () => expect(round.outcome).toBe(g[2]));
-            it(result, () => expect(round.result).toBe(result));
+    describe('Invalid gameplay', () => {
+
+      describe('invalid vs valid', () => {
+        let validMove = moves.find(m => !('error' in m));
+
+        moves.filter(m => 'error' in m).forEach(invalidMove => {
+          [[validMove, invalidMove], [invalidMove, validMove], [invalidMove, invalidMove]].forEach(r => {
+            it(`play(${r[0].name}, ${r[1].name}) throws an Error`, () => expect(() => R.play(<number>r[0].value, <number>r[1].value)).toThrowError());
+          });
+        });
+      });
+
+      describe('invalid vs. invalid', () => {
+        moves.filter(m => 'error' in m).forEach(m1 => {
+          moves.filter(m => 'error' in m).forEach(m2 => {
+            it(`play(${m1.name}, ${m2.name}) throws an Error`, () => expect(() => R.play(<number>m1.value, <number>m2.value)).toThrowError());
           });
         });
       });
