@@ -32,18 +32,17 @@ console.log(
 
 //The static method "play" takes 2 moves and returns an object.
 //The return object with have 2 properties, outcome and result.
-let r = R.play(R.PAPER, R.SPOCK);
+let r = R.play(R.LIZARD, R.SPOCK);
 console.log(
-  r.outcome, //1
-  r.result   //'paper disproves spock'
+  r.outcome, //1  i.e. R.PLAYER1
+  r.result   //'lizard poisons spock'
 )
 
 //The static method "getMoveName" takes a move and returns a string.
 //The returned string will be a readable move name.
 console.log(
-  R.getMoveName(R.ROCK)), //rock
-  R.getMoveName(0)),      //rock
-  R.getMoveName('0')      //rock
+  R.getMoveName(R.ROCK), //rock
+  R.getMoveName(0),      //rock
 );
 
 //ERROR HANDLING

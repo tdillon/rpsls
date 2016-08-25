@@ -101,7 +101,7 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
         let validMove = moves.find(m => !('error' in m));
 
         moves.filter(m => 'error' in m).forEach(invalidMove => {
-          [[validMove, invalidMove], [invalidMove, validMove], [invalidMove, invalidMove]].forEach(r => {
+          [[validMove, invalidMove], [invalidMove, validMove]].forEach(r => {
             it(`play(${r[0].name}, ${r[1].name}) throws an Error`, () => expect(() => R.play(<number>r[0].value, <number>r[1].value)).toThrowError());
           });
         });

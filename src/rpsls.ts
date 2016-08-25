@@ -3,34 +3,40 @@ const privateData = new WeakMap<Function, { moves: Array<string>, rules: Array<A
 
 export class RockPaperScissorsLizardSpock {
 
+  /** Constant for a tie outcome, 0 */
   static get TIE() { return 0; }
+  /** Constant for a player 1 vistory, 1 */
   static get PLAYER1() { return 1; }
+  /** Constant for a player 2 vistory, 2 */
   static get PLAYER2() { return 2; }
 
+  /** Constant for a rock move, 0. */
   static get ROCK() { return 0; }
+  /** Constant for a paper move, 1. */
   static get PAPER() { return 1; }
+  /** Constant for a scissors move, 2. */
   static get SCISSORS() { return 2; }
+  /** Constant for a lizard move, 3. */
   static get LIZARD() { return 3; }
+  /** Constant for a spock move, 4. */
   static get SPOCK() { return 4; }
 
   /**
-   * TODO
+   * Return the string representation of the given move.
    */
   static getMoveName(move: number): string {
-    move = RockPaperScissorsLizardSpock._cleanMove(move);
+    RockPaperScissorsLizardSpock._validateMove(move);
     return privateData.get(RockPaperScissorsLizardSpock).moves[move];
   }
 
   /**
-   * TODO DESCRIBE THE class
-   * @parm p1 number TODO player 1 move
-   * @parm p2 number TODO player 2 move
-   * @returns foo bar
-   * @return foo bar
+   * Return an object containing the outcome and result of player one's (p1) move vs player two's move (p2).
+   * The outcome property of the returned object will be TIE, PLAYER1, or PLAYER2.
+   * The result property of the returned object will be a string that describes the outcome.
    */
   static play(p1: number, p2: number): { outcome: number, result: string } {
-    p1 = RockPaperScissorsLizardSpock._cleanMove(p1);
-    p2 = RockPaperScissorsLizardSpock._cleanMove(p2);
+    RockPaperScissorsLizardSpock._validateMove(p1);
+    RockPaperScissorsLizardSpock._validateMove(p2);
 
     let rules = privateData.get(RockPaperScissorsLizardSpock).rules;
 
@@ -45,20 +51,16 @@ export class RockPaperScissorsLizardSpock {
 
 
   /**
-   * TODO
-   *
-   * @private
+   * Verify whether a move is valid.
+   * If not, throw an error.
    */
-  private static _cleanMove(num: number) {
-    if (typeof num !== 'number' && typeof num !== 'string') {
-      throw new TypeError(`Move must be an integer between 0 and 4.  Got ${num}`);
-    } else if ((num < 0) || (num > 4) || (num % 1 !== 0)) {
-      throw new RangeError(`Move must be an integer between 0 and 4.  Got ${num}`);
+  private static _validateMove(move: number) {
+    if (typeof move !== 'number') {
+      throw new TypeError(`Move must be an integer between 0 and 4.  Got ${move}`);
+    } else if ((move < 0) || (move > 4) || (move % 1 !== 0)) {
+      throw new RangeError(`Move must be an integer between 0 and 4.  Got ${move}`);
     }
-
-    return num;
   }
-
 }
 
 privateData.set(RockPaperScissorsLizardSpock, {
