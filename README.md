@@ -6,14 +6,29 @@
 
 The canonical rock-paper-scissors-lizard-spock library.
 
+## Installation
+
+```shell
+npm i --save rpsls
+```
+
 ## Usage
 
-```javascript
-//import library and alias
-import {RockPaperScissorsLizardSpock as R} from 'rpsls'
+### Import library
 
-//The 5 moves are static getters.
-//They are aliases for the numbers 0-4.
+The default import is RockPaperScissorsLizardSpock.
+I recommend aliasing, e.g., R.
+
+```javascript
+import {RockPaperScissorsLizardSpock as R} from 'rpsls'
+```
+
+### Moves
+
+The five moves in the game are accessed via static getters.
+They are aliases for the number 0 through 4.
+
+```javascript
 console.log(
   R.ROCK,     //0
   R.PAPER,    //1
@@ -21,40 +36,76 @@ console.log(
   R.LIZARD,   //3
   R.SPOCK     //4  
 );
+```
 
-//The 3 outcomes are static getters.
-//They are aliases for the numbers 0-2
+### Outcomes
+
+The three outcomes of the game are static getters.
+They are aliases for the numbers 0, 1, and 2.
+
+```javascript
 console.log(
   R.TIE,     //0
   R.PLAYER1, //1
   R.PLAYER2  //2
 );
+```
 
-//The static method "play" takes 2 moves and returns an object.
-//The return object with have 2 properties, outcome and result.
-let r = R.play(R.LIZARD, R.SPOCK);
-console.log(
-  r.outcome, //1  i.e. R.PLAYER1
-  r.result   //'lizard poisons spock'
-)
+### `play`
 
-//The static method "getMoveName" takes a move and returns a string.
-//The returned string will be a readable move name.
-console.log(
-  R.getMoveName(R.ROCK), //rock
-  R.getMoveName(0),      //rock
-);
+The static `play` method requires two parameters that represent the moves for player 1 and player 2 respectively.
+An object will be returned with the details of the game.
+The structure of the return object varies slightly depending upon whether the game is a tie or not.
 
-//ERROR HANDLING
-//"play" and "getMoveName" will throw errors if
-//  unexpected parameters are supplied.
-try {
-  R.play('foo', null);
-  R.getMoveName(-1);
-} catch (e) {
-  console.log('Why?');
+#### Returned object for a TIE
+
+```javascript
+let game = R.play(R.ROCK, R.ROCK);
+
+//game will look like this
+{
+  outcome: 0,  //TIE
+  result: "rock vs rock is a tie"
 }
+```
 
+#### Returned object for a NON-TIE
+
+```javascript
+let game = R.play(R.SPOCK, R.LIZARD);
+
+//game will look like this
+{
+  outcome: 2,  //PLAYER2
+  winner: 3,   //LIZARD
+  loser: 4,    //SPOCK
+  method: 'poisons'
+  result: 'lizard poisons spock'
+}
+```
+
+### `getMoveName`
+
+The static `getMoveName` method takes a single parameter that represents a move.  A string will be returned that is the readable name of the given move.
+
+```javascript
+R.getMoveName(R.SPOCK);  //'spock'
+R.getMoveName(4);        //'spock'
+```
+
+### Error Handling
+
+Both `play` and `getMoveName` with throw an error if anything besides the integer numeric values of `0, 1, 2, 3, 4` are passed to them.
+
+```javascript
+R.play(R.ROCK, 'foo');  //error
+R.play(R.ROCK, '2');    //error
+R.play(R.ROCK, 1.1);    //error
+R.play(R.ROCK, 5);      //error
+R.getMoveName('bar');   //error
+R.getMoveName('2');     //error
+R.getMoveName(1.1);     //error
+R.getMoveName(5);       //error
 ```
 
 ## Dev Process

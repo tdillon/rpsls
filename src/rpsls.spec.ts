@@ -62,10 +62,14 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
 
       describe('Ties', () => {
         moves.filter(m => !('error' in m)).forEach(m => {
-          describe(`${R.getMoveName(m.value)} vs ${R.getMoveName(m.value)}`, () => {
+          describe(`${m.name.toUpperCase()} vs ${m.name.toUpperCase()}`, () => {
             let round = R.play(m.value, m.value);
+            let result = `${R.getMoveName(m.value)} vs ${R.getMoveName(m.value)} is a tie`;
             it(`outcome is TIE`, () => expect(round.outcome).toBe(R.TIE));
-            it(`result is a tie`, () => expect(round.result).toBe(`${R.getMoveName(m.value)} vs ${R.getMoveName(m.value)} is a tie`));
+            it(`no winner`, () => expect(round.winner).toBeUndefined());
+            it(`no looser`, () => expect(round.loser).toBeUndefined());
+            it(`no method`, () => expect(round.method).toBeUndefined());
+            it(`result is '${result}'`, () => expect(round.result).toBe(result));
           });
         });
       });
@@ -83,12 +87,17 @@ describe('Rock Paper Scissors Lizard Spock library tests', () => {
           { winner: R.SPOCK, loser: R.ROCK, method: 'vaporizes' },
           { winner: R.SPOCK, loser: R.SCISSORS, method: 'smashes' },
         ].forEach(test => {
-          let result = `${R.getMoveName(test.winner)} ${test.method} ${R.getMoveName(test.loser)}`;  //e.g., 'rock crushes scissors'
-          [[test.winner, test.loser, R.PLAYER1], [test.loser, test.winner, R.PLAYER2]].forEach(g => {
-            describe(`${R.getMoveName(g[0])} vs ${R.getMoveName(g[1])}`, () => {
-              let round = R.play(g[0], g[1]);
-              it(`winner: ${R.getMoveName(test.winner)} loser: ${R.getMoveName(test.loser)}`, () => expect(round.outcome).toBe(g[2]));
-              it(result, () => expect(round.result).toBe(result));
+          let result = `${R.getMoveName(test.winner)} ${test.method} ${R.getMoveName(test.loser)}`;
+          [{ player1: test.winner, player2: test.loser, outcome: R.PLAYER1, outcomeName: 'PLAYER1' },
+            { player1: test.loser, player2: test.winner, outcome: R.PLAYER2, outcomeName: 'PLAYER2' }
+          ].forEach(g => {
+            describe(`${R.getMoveName(g.player1).toUpperCase()} vs ${R.getMoveName(g.player2).toUpperCase()}`, () => {
+              let round = R.play(g.player1, g.player2);
+              it(`outcome is ${g.outcomeName}`, () => expect(round.outcome).toBe(g.outcome));
+              it(`winner is ${R.getMoveName(test.winner).toUpperCase()}`, () => expect(round.winner).toBe(test.winner));
+              it(`loser is ${R.getMoveName(test.loser).toUpperCase()}`, () => expect(round.loser).toBe(test.loser));
+              it(`method is ${test.method}`, () => expect(round.method).toBe(test.method));
+              it(`result is '${result}'`, () => expect(round.result).toBe(result));
             });
           });
         });

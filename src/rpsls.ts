@@ -5,9 +5,9 @@ export class RockPaperScissorsLizardSpock {
 
   /** Constant for a tie outcome, 0 */
   static get TIE() { return 0; }
-  /** Constant for a player 1 vistory, 1 */
+  /** Constant for a player 1 victory, 1 */
   static get PLAYER1() { return 1; }
-  /** Constant for a player 2 vistory, 2 */
+  /** Constant for a player 2 victory, 2 */
   static get PLAYER2() { return 2; }
 
   /** Constant for a rock move, 0. */
@@ -34,21 +34,35 @@ export class RockPaperScissorsLizardSpock {
    * The outcome property of the returned object will be TIE, PLAYER1, or PLAYER2.
    * The result property of the returned object will be a string that describes the outcome.
    */
-  static play(p1: number, p2: number): { outcome: number, result: string } {
+  static play(p1: number, p2: number): { outcome: number, result: string, method?: string, winner?: number, loser?: number } {
     RockPaperScissorsLizardSpock._validateMove(p1);
     RockPaperScissorsLizardSpock._validateMove(p2);
 
     let rules = privateData.get(RockPaperScissorsLizardSpock).rules;
 
     if (p1 === p2) {  //TIE
-      return { outcome: RockPaperScissorsLizardSpock.TIE, result: `${RockPaperScissorsLizardSpock.getMoveName(p1)} vs ${RockPaperScissorsLizardSpock.getMoveName(p2)} is a tie` };
+      return {
+        outcome: RockPaperScissorsLizardSpock.TIE,
+        result: `${RockPaperScissorsLizardSpock.getMoveName(p1)} vs ${RockPaperScissorsLizardSpock.getMoveName(p2)} is a tie`
+      };
     } else if (rules[p1][p2]) {  //PLAYER 1
-      return { outcome: RockPaperScissorsLizardSpock.PLAYER1, result: `${RockPaperScissorsLizardSpock.getMoveName(p1)} ${rules[p1][p2]} ${RockPaperScissorsLizardSpock.getMoveName(p2)}` };
+      return {
+        outcome: RockPaperScissorsLizardSpock.PLAYER1,
+        result: `${RockPaperScissorsLizardSpock.getMoveName(p1)} ${rules[p1][p2]} ${RockPaperScissorsLizardSpock.getMoveName(p2)}`,
+        method: rules[p1][p2],
+        winner: p1,
+        loser: p2
+      };
     } else {  //PLAYER 2
-      return { outcome: RockPaperScissorsLizardSpock.PLAYER2, result: `${RockPaperScissorsLizardSpock.getMoveName(p2)} ${rules[p2][p1]} ${RockPaperScissorsLizardSpock.getMoveName(p1)}` };
+      return {
+        outcome: RockPaperScissorsLizardSpock.PLAYER2,
+        result: `${RockPaperScissorsLizardSpock.getMoveName(p2)} ${rules[p2][p1]} ${RockPaperScissorsLizardSpock.getMoveName(p1)}`,
+        method: rules[p2][p1],
+        winner: p2,
+        loser: p1
+      };
     }
   }
-
 
   /**
    * Verify whether a move is valid.
