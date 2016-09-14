@@ -1,13 +1,21 @@
 <!doctype html>
 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rock Paper Scissors Lizard Spock</title>
+<link rel="icon" type="img/png" href="/icon.png">
+
+
+
 <header>
-    <h1></h1>
-    <input placeholder="enter you name">
-    <input type=button value=save>
+    <input placeholder="new list item">
+    <input type=button value=Add>
 </header>
 <main>
     <ul>
 </main>
+
+
 
 <script src="https://www.gstatic.com/firebasejs/3.3.2/firebase.js"></script>
 <script>
@@ -34,19 +42,7 @@
 
     dbRefPlayers.on('child_added', snapshot => addItem(snapshot.val()));
 
+    let [inputName, inputSave] = document.querySelectorAll('input');
 
-    let [inputName, inputSave] = document.querySelectorAll('header > input');
-    let name = '';
-
-    inputSave.addEventListener('click', () => {
-        if (inputName.value !== '') {
-            inputName.hidden = inputSave.hidden = true;
-            name = document.querySelector('header > h1').textContent = inputName.value;
-            dbRefPlayers.push(name);
-            let key = `${name}@email.com`;
-            //firebase.database().ref('players').set({key: name});
-        }
-    });
-   
-
+    inputSave.addEventListener('click', () => { dbRefPlayers.push(inputName.value) });
 </script>
