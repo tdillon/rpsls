@@ -1,0 +1,22 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js: "node"
+before_install:
+  #!/bin/bash
+  - set -e
+  - echo "machine github.com" >> ~/.netrc
+  - echo "   login tdillon" >> ~/.netrc
+  - echo "   password $GH_TOKEN" >> ~/.netrc
+script:
+  - npm run rollup
+after_success:
+  - ls -la
+  - git checkout -b gh-pages
+  - rm -rf node_modules/ src/ .gitignore .travis.yml package.json README.md rollup.config.js tsconfig.json
+  - git add --all
+  - git commit -m "travis-ci deployment"
+  - git push --force origin gh-pages
+branches:
+  only:
+  - gh-pages-dev
