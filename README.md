@@ -16,12 +16,26 @@ npm i --save rpsls
 
 ### Import library
 
-The default import is RockPaperScissorsLizardSpock.
-I recommend aliasing, e.g., R.
+The default export is a class with only static members.
 
 ```javascript
-import {RockPaperScissorsLizardSpock as R} from 'rpsls'
+import R from 'rpsls'
 ```
+
+### static members
+
+The class will contain the following static members.  See the explanation for each member in the sections below.
+
+* TIE
+* PLAYER1
+* PLAYER2
+* ROCK
+* PAPER
+* SCISSORS
+* LIZARD
+* SPOCK
+* getMoveName
+* play
 
 ### Moves
 

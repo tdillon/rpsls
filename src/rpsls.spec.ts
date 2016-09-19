@@ -1,4 +1,4 @@
-import {RockPaperScissorsLizardSpock as R} from './rpsls'
+import R from './rpsls'
 
 let moves: Array<{ name: string, value: any, error?: ErrorConstructor }> = [
   { name: 'rock', value: R.ROCK },

@@ -1,7 +1,8 @@
+
 //Use a WeakMap until class static fields are available.  ES 2017?
 const privateData = new WeakMap<Function, { moves: Array<string>, rules: Array<Array<string>> }>();
 
-export class RockPaperScissorsLizardSpock {
+export default class RockPaperScissorsLizardSpock {
 
   /** Constant for a tie outcome, 0 */
   static get TIE() { return 0; }
