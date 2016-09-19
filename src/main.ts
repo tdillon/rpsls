@@ -1,12 +1,16 @@
-import './polyfills.ts';
+import R from 'rpsls'
 
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { enableProdMode } from '@angular/core';
-import { environment } from './environments/environment';
-import { AppModule } from './app/';
 
-if (environment.production) {
-  enableProdMode();
-}
+let inputs = [...<NodeListOf<HTMLInputElement>>document.querySelectorAll('input')];
+let result = <HTMLDivElement>document.querySelector('div');
+let outcomeCSS = ['tie', 'win', 'lose'];
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+inputs.forEach(i => i.addEventListener('click', a => {
+    let p1 = +(<HTMLInputElement>(a.target)).dataset['move'];
+    let p2 = Math.floor(Math.random() * 5);
+    let g = R.play(p1, p2);
+    let r = document.createElement('div');
+    r.className = outcomeCSS[g.outcome];
+    r.textContent = `${g.result}`;
+    result.insertBefore(r, result.firstChild);
+}));
