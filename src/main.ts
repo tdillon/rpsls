@@ -1,11 +1,11 @@
 import R from 'rpsls'
 
 
-let inputs = [...<NodeListOf<HTMLInputElement>>document.querySelectorAll('input')];
+let btns = [...<NodeListOf<HTMLElement>>document.querySelectorAll('i')];
 let result = <HTMLDivElement>document.querySelector('div');
 let outcomeCSS = ['tie', 'win', 'lose'];
 
-inputs.forEach(i => i.addEventListener('click', a => {
+btns.forEach(i => i.addEventListener('click', a => {
     let p1 = +(<HTMLInputElement>(a.target)).dataset['move'];
     let p2 = Math.floor(Math.random() * 5);
     let g = R.play(p1, p2);
