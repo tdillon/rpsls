@@ -1,0 +1,56 @@
+   body{margin:0;background:#333;color:#fff;}
+    .tie {
+        color: rgba(0, 0, 0, .54);
+    }
+    
+    .win {
+        color: #09c;
+    }
+    
+    .lose {
+        color: pink;
+    }
+
+    div > i.fa {
+    font-size: 3em;
+}
+
+body > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div > div {
+    flex-basis: calc(50% - 2em);
+    text-align:center;
+    padding:1em;
+}
+
+#panUserSelect i:nth-child(2){
+    font-size:2em;
+    vertical-align:middle;
+    padding:.2em;
+}
+
+.human > :first-child,.bot > :last-child {
+    color:#09c;
+}
+.human > :last-child, .bot > :first-child {
+    color:rgba(255,255,255,.2);
+}
+.human > :nth-child(2) {
+    transform:rotateY(180deg);
+}
+
+#panRecentGame {
+    background: #3a3a3a;
+}
+#panRecentGame > :last-child{
+    flex-basis:100%;
+}
+
+
+td:first-child{text-align:right;}
+td:nth-child(2){text-align:left;padding-left:1em;}
+td:nth-child(3){text-align:right;}

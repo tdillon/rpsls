@@ -5,35 +5,386 @@
 <link rel="icon" type="img/png" href="/icon.png">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1"
     crossorigin="anonymous">
-<style>
-    i.fa {
-        font-size: 4em;
-    }
-    
-    .tie {
-        color: rgba(0, 0, 0, .54);
-    }
-    
-    .win {
-        color: #09c;
-    }
-    
-    .lose {
-        color: pink;
-    }
+<link rel=stylesheet href=styles.css>
+
 </style>
 
-<i class="fa fa-hand-rock-o" data-move=0></i>
-<i class="fa fa-hand-paper-o" data-move=1></i>
-<i class="fa fa-hand-scissors-o" data-move=2></i>
-<i class="fa fa-hand-lizard-o" data-move=3></i>
-<i class="fa fa-hand-spock-o" data-move=4></i>
+<div id=panUserSelect>
+    <div>
+        <i class="fa fa-male"></i>
+        <i class="fa fa-toggle-on"></i>
+        <i class="fa fa-android"></i>
+    </div>
+    <div>
+        <i class="fa fa-male"></i>
+        <i class="fa fa-toggle-on"></i>
+        <i class="fa fa-android"></i>
+    </div>
+</div>
 
-<section>
-<span>0</span> wins
-<span>0</span> losses
-<span>0</span> ties
-</section>
+<div id=panMoves>
+    <div>
+        <i class="fa fa-hand-rock-o" data-move=0></i>
+        <i class="fa fa-hand-paper-o" data-move=1></i>
+        <i class="fa fa-hand-scissors-o" data-move=2></i>
+        <i class="fa fa-hand-lizard-o" data-move=3></i>
+        <i class="fa fa-hand-spock-o" data-move=4></i>
+    </div>
+    <div>
+        <i class="fa fa-hand-rock-o" data-move=0></i>
+        <i class="fa fa-hand-paper-o" data-move=1></i>
+        <i class="fa fa-hand-scissors-o" data-move=2></i>
+        <i class="fa fa-hand-lizard-o" data-move=3></i>
+        <i class="fa fa-hand-spock-o" data-move=4></i>
+    </div>
+</div>
 
-<div>
+<div id=panRecentGame>
+    <div>
+        <i class="fa"></i>
+    </div>
+    <div>
+        <i class="fa"></i>
+    </div>
+    <div>&nbsp;</div>
+</div>
+
+<div id=panStats1>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>games
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>games
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+</div>
+
+
+<div id=panStatsRock>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>Rock
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>Rock
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+</div>
+
+
+
+
+<div id=panStatsPaper>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>Paper
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>Paper
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+</div>
+
+
+
+<div id=panStatsScissors>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>Scissors
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>Scissors
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+</div>
+
+
+
+<div id=panStatsLizard>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>Lizard
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>Lizard
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+</div>
+
+
+
+<div id=panStatsSpock>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>Spock
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td><span>#</span>
+                <td>Spock
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>wins
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>losses
+                <td><span></span>%
+            <tr>
+                <td><span>#</span>
+                <td>ties
+                <td><span></span>%
+        </table>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" version=1.1 viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+            <path fill=none stroke=#09c stroke-width=10 />
+            <path fill=none stroke=red stroke-width=10 />
+            <path fill=none stroke=gray stroke-width=10 />
+        </svg>
+    </div>
+</div>
+
+
 <script src=bundle.js></script>
